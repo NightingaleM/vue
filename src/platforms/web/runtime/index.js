@@ -20,6 +20,7 @@ import platformDirectives from './directives/index'
 import platformComponents from './components/index'
 
 // install platform specific utils
+// 这些值其实在config的注释中已经写了，这些是跟平台相关的值，是有可能被覆盖的，在这里就是将这些值进行了覆盖
 Vue.config.mustUseProp = mustUseProp
 Vue.config.isReservedTag = isReservedTag
 Vue.config.isReservedAttr = isReservedAttr
@@ -27,8 +28,9 @@ Vue.config.getTagNamespace = getTagNamespace
 Vue.config.isUnknownElement = isUnknownElement
 
 // install platform runtime directives & components
-extend(Vue.options.directives, platformDirectives)
-extend(Vue.options.components, platformComponents)
+// 安装特定平台运行时的指令和组件
+extend(Vue.options.directives, platformDirectives) // model，show
+extend(Vue.options.components, platformComponents) // Transition,TransitionGroup
 
 // install platform patch function
 Vue.prototype.__patch__ = inBrowser ? patch : noop
