@@ -270,8 +270,8 @@ const defaultStrat = function (parentVal: any, childVal: any): any {
 /**
  * Validate component names
  */
-function checkComponents(options: Object) {
-  for (const key in options.components) {
+function checkComponents(options: Object) { // 检测组件名是不是符合规范
+  for (const key in options.components) {// options.components 就是平时我们引入其他组建时，要将组件名传入进来，
     validateComponentName(key)
   }
 }
@@ -283,6 +283,7 @@ export function validateComponentName(name: string) {
       'should conform to valid custom element name in html5 specification.'
     )
   }
+  // isBuiltInTag 检测名字是否是内置的标签，isReservedTag检测组建名字是否属于html标签或者部分svg标签
   if (isBuiltInTag(name) || config.isReservedTag(name)) {
     warn(
       'Do not use built-in or reserved HTML elements as component ' +
@@ -294,6 +295,7 @@ export function validateComponentName(name: string) {
 /**
  * Ensure all props option syntax are normalized into the
  * Object-based format.
+ * 确保所有的props都将格式化成object格式。
  */
 function normalizeProps(options: Object, vm: ?Component) {
   const props = options.props
@@ -384,6 +386,9 @@ function assertObjectType(name: string, value: any, vm: ?Component) {
 /**
  * Merge two option objects into a new one.
  * Core utility used in both instantiation and inheritance.
+ * 合并两个选项对象为一个新的对象，这个函数在实例化和继承的时候都有用到。
+ * 第一，这个函数将会产生一个新的对象；
+ * 第二，这个函数应该是一个用来合并两个选项对象为一个新对象的通用程序。
  */
 export function mergeOptions(
   parent: Object,
