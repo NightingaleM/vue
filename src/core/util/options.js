@@ -25,6 +25,7 @@ import {
  * Option overwriting strategies are functions that handle
  * how to merge a parent option value and a child option
  * value into the final value.
+ * 选项覆盖策略是处理如何将父选项值和子选项值合并到最终值的函数。
  */
 const strats = config.optionMergeStrategies
 
@@ -402,9 +403,11 @@ export function mergeOptions(
   if (typeof child === 'function') {
     child = child.options
   }
-
+  // 规范化propos
   normalizeProps(child, vm)
+  // 规范化inject
   normalizeInject(child, vm)
+  // 规范化directives
   normalizeDirectives(child)
 
   // Apply extends and mixins on the child options,
